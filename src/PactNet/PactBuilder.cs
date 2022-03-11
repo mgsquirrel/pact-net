@@ -122,7 +122,7 @@ namespace PactNet
         /// Start the mock server
         /// </summary>
         /// <returns>Mock server URI</returns>
-        private Uri StartMockServer()
+        public Uri StartMockServer()
         {
             string hostIp = this.host switch
             {
@@ -139,6 +139,14 @@ namespace PactNet
             var mockServerUrl = $"http://{hostIp}:{serverPort}";
             var uri = new Uri(mockServerUrl);
             return uri;
+        }
+
+        /// <summary>
+        /// Stops the mock server
+        /// </summary>
+        public void StopMockServer(Uri uri)
+        {
+            this.server.CleanupMockServer(uri.Port);
         }
 
         /// <summary>
